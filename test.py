@@ -1,0 +1,46 @@
+
+import grovepi
+import time
+import collections
+
+historyBuffer = collections.deque(maxlen = 10)
+outputBuffer = collections.deque(maxlen = 4)
+warnBuffer = collections. deque(maxlen = 3)
+lastValue = 0
+highPassed = 0
+count = 0  
+warn_flag = 0
+
+while True:
+    pir = grovepi.digitalRead(3)
+    ultra = grovepi.ultrasonicRead(2)
+    value = grovepi.analogRead(1)
+    highPassed = 0.5*(highPassed + value - lastValue)
+    
+    historyBuffer.append(highPassed)
+    
+    orderedHistory = sorted(historyBuffer)
+    median = orderedHistory[int(len(orderedHistory)/2)] 
+    lastValue = value
+      
+    time.sleep(0.01)
+    #print(median)
+    
+    if (highPassed-median) > 40:
+        outputBuffer.append(1)
+        if sum(outputBuffer) >= 3:
+            #print("warning! " + str(highPassed-median)+" PIR: "+str(pir)+" Ultra: "+str(ultra))
+            warn_flag = 1    
+	    warnBuffer.append(1)
+            count+=1
+	if sum(warnBuffer) >=2:
+	    print("warning! " + str(highPassed-median)+" PIR: "+str(pir)+" Ultra: "+str(ultra))
+    else:
+        outputBuffer.append(0)
+	warn_flag = 0	
+	warnBuffer.append(0)
+    print("%s, %4.4f, %4.4f, %4.4f, %4.4f,      %d, %d"%(time.strftime("%Y-%m-%d %H:%M:%S",time.localtime()),value,highPassed,median,highPassed-median, warn_flag, ultra))    
+    
+
+    
+    
