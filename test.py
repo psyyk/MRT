@@ -26,7 +26,7 @@ while True:
     time.sleep(0.01)
     #print(median)
     
-    if (highPassed-median) > 40:
+    if (highPassed-median) > 20:
         outputBuffer.append(1)
         if sum(outputBuffer) >= 3:
             #print("warning! " + str(highPassed-median)+" PIR: "+str(pir)+" Ultra: "+str(ultra))
