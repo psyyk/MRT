@@ -46,6 +46,7 @@ def initialiseDataProcessor():
 def checkState():
 	global warning_message
 	while True:
+		time.sleep(1)
 		global loudnessFilter, distanceFilter, movementFilter
 		if loudnessFilter.state == "NORMAL" and distanceFilter.state == "NORMAL" and movementFilter.state == "NORMAL":
 			warning_message = "NORMAL"
@@ -68,7 +69,6 @@ def checkState():
 		elif loudnessFilter.state == "WARNING" :
 			warning_message = "Loudness sensor warning!"
 		state = "ALERT"
-		time.sleep(1)
 	return
 
 def collectSensorData():
