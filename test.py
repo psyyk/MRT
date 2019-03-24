@@ -10,7 +10,7 @@ lastValue = 0
 highPassed = 0
 count = 0  
 warn_flag = 0
-
+print("Time", "Value", "High Passed", "Median", "Diff", "Output", "Pir", "Ultro")
 while True:
     pir = grovepi.digitalRead(3)
     ultra = grovepi.ultrasonicRead(2)
@@ -26,7 +26,7 @@ while True:
     time.sleep(0.01)
     #print(median)
     
-    if abs(highPassed-median) > 40:
+    if abs(highPassed-median) > 30:
         outputBuffer.append(1)
         if sum(outputBuffer) >= 3:
             warn_flag = 1 
@@ -38,7 +38,7 @@ while True:
         outputBuffer.append(0)
         warn_flag = 0	
     warnBuffer.append(warn_flag)
-    print("%s, %4.4f, %4.4f, %4.4f, %4.4f,      %d, %d"%(time.strftime("%Y-%m-%d %H:%M:%S",time.localtime()),value,highPassed,median,highPassed-median, warn_flag, ultra))    
+    print("%s, %4.4f, %4.4f, %4.4f, %4.4f, %d, %d, %d"%(time.strftime("%Y-%m-%d %H:%M:%S",time.localtime()),value,highPassed,median,highPassed-median, warn_flag, pir, ultra))    
     
 
     if sum(warnBuffer) >=3:
