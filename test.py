@@ -5,7 +5,7 @@ import collections
 
 historyBuffer = collections.deque(maxlen = 10)
 outputBuffer = collections.deque(maxlen = 4)
-warnBuffer = collections. deque(maxlen = 4)
+warnBuffer = collections. deque(maxlen = 6)
 lastValue = 0
 highPassed = 0
 count = 0  
@@ -26,7 +26,7 @@ while True:
     time.sleep(0.01)
     #print(median)
     
-    if abs(highPassed-median) > 35:
+    if abs(highPassed-median) > 34:
         outputBuffer.append(1)
         if sum(outputBuffer) >= 3:
             warn_flag = 1 
@@ -41,7 +41,7 @@ while True:
     print("%s, %4.4f, %4.4f, %4.4f, %4.4f, %d, %d, %d"%(time.strftime("%Y-%m-%d %H:%M:%S",time.localtime()),value,highPassed,median,highPassed-median, warn_flag, pir, ultra))    
     
 
-    if sum(warnBuffer) >=3:
+    if sum(warnBuffer) >=4:
         print("warning! " + str(highPassed-median)+" PIR: "+str(pir)+" Ultra: "+str(ultra))
     
     
