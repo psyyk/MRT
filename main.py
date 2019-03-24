@@ -49,6 +49,7 @@ def checkState():
 		global loudnessFilter, distanceFilter, movementFilter
 		if loudnessFilter.state == "NORMAL" and distanceFilter.state == "NORMAL" and movementFilter.state == "NORMAL":
 			warning_message = "NORMAL"
+			print("111")
 			continue
 		elif loudnessFilter.state == "WARNING" and distanceFilter.state == "WARNING" and movementFilter.state == "NORMAL":
 			warning_message = "Loudness sensor and Ultrasonic sensor warning!"	
@@ -62,6 +63,7 @@ def checkState():
 			warning_message = "Ultrasonic sensor warning!"
 		elif movementFilter.state == "WARNING" :
 			warning_message = "PIR sensor warning!"
+			print("222")
 
 		elif loudnessFilter.state == "WARNING" :
 			warning_message = "Loudness sensor warning!"
@@ -71,12 +73,13 @@ def checkState():
 
 def collectSensorData():
 	while True:
-		if LOUDNESS_SENSOR == "ON":
+		if LOUDNESS_SENSOR == "ON" and STATE = "ON":
 			loudnessFilter.addData(grovepi.analogRead(1))    
-		if ULTRASONIC_SENSOR == "ON":
+		if ULTRASONIC_SENSOR == "ON" and STATE = "ON":
 			distanceFilter.addData(grovepi.ultrasonicRead(2))
 		if PIR_SENSOR == "ON" and STATE = "ON":
 			movementFilter.addData(grovepi.digitalRead(3))
+			print("333")
 		time.sleep(0.01)
 
 def activeNFCReader():
