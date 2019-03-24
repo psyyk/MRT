@@ -135,6 +135,9 @@ while True:
 		print(warning_message)
 	elif STATE == "OFF":
 		if myshop.getNumberOfStaffInShop() == 0:
+			loudnessFilter.reset()
+			movementFilter.reset()
+			distanceFilter.reset()
 			for x in range(5,0,-1):
 				print("Alarm activate in " + str(x) + "second")
 				time.sleep(1)
@@ -143,9 +146,8 @@ while True:
 			print("Alarm on")
 	elif STATE == "ALERT":
 		print("Alerting!!! Scan valid ID card to turn off!")
-
 	
-	time.sleep(1)
+	time.sleep(1.5)
 
 # 不同state打印不同输出
 # checkState()
