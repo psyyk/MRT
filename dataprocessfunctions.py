@@ -63,7 +63,7 @@ class MedianFilter():
       self.state = "WARNING"
     return self.median
 
-  def reset():
+  def reset(self):
     self.state = "NORMAL"
     self.median = 0
     for i in xrange(0, self.delay-1):
@@ -72,7 +72,7 @@ class MedianFilter():
 
 
 class LowPassFilter():
-  state = "NORMAL"
+  state = "normal"
   def __init__(self, constant, lowPassed, threshold):
     self.constant = constant
     self.lowPassed = lowPassed
@@ -84,7 +84,7 @@ class LowPassFilter():
       self.state = "WARNING"
     return self.lowPassed
 
-  def reset():
+  def reset(self):
     self.state = "NORMAL"
     self.lowPassed = self.threshold + 100
     return
@@ -107,7 +107,7 @@ class HighPassFilter(object):
 
     return self.highPassed
 
-  def reset():
+  def reset(self):
     self.state = "NORMAL"
     self.lastValue = 0
 
@@ -147,7 +147,7 @@ class LoudnessFilter(object):
     if sum(self.warningBuffer) >= (self.wb_size*0.6) and self.num > 10:
       self.state = "WARNING"
 
-  def reset():
+  def reset(self):
     self.highPassFilter.reset()
     self.medianFilter.reset()
     self.state = "NORMAL"
