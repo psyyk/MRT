@@ -10,13 +10,13 @@ import thread
 # Global variables
 STATE = "ON"   # alarem state
 LOUDNESS_SENSOR = "OFF"
-ULTRASONIC_SENSOR = "OFF"
+ULTRASONIC_SENSOR = "ON"
 PIR_SENSOR = "ON" 
 
 ID = "None"
 lock = thread.allocate()
 exit_flag = 0
-warning_message = ""
+warning_message = "NORMAL"
 
 def initialiseHumanResource():
 
@@ -38,7 +38,7 @@ def initialiseHumanResource():
 def initialiseDataProcessor():
 	global loudnessFilter, distanceFilter, movementFilter
 	loudnessFilter = LoudnessFilter(0.5,0,34,10,4,6)
-	distanceFilter = LowPassFilter(0.1, 500, 300)
+	distanceFilter = LowPassFilter(0.1, 500, 80)
 	movementFilter = MedianFilter(5)
 
 	return
@@ -50,7 +50,7 @@ def checkState():
 		global loudnessFilter, distanceFilter, movementFilter
 		if loudnessFilter.state == "NORMAL" and distanceFilter.state == "NORMAL" and movementFilter.state == "NORMAL":
 			warning_message = "NORMAL"
-			print("111")
+			
 			continue
 		elif loudnessFilter.state == "WARNING" and distanceFilter.state == "WARNING" and movementFilter.state == "NORMAL":
 			warning_message = "Loudness sensor and Ultrasonic sensor warning!"	
@@ -64,7 +64,7 @@ def checkState():
 			warning_message = "Ultrasonic sensor warning!"
 		elif movementFilter.state == "WARNING" :
 			warning_message = "PIR sensor warning!"
-			print("222")
+			
 
 		elif loudnessFilter.state == "WARNING" :
 			warning_message = "Loudness sensor warning!"
@@ -79,7 +79,7 @@ def collectSensorData():
 			distanceFilter.addData(grovepi.ultrasonicRead(2))
 		if PIR_SENSOR == "ON" and STATE == "ON":
 			movementFilter.addData(grovepi.digitalRead(3))
-			print("333")
+			
 		time.sleep(0.01)
 
 def activeNFCReader():
