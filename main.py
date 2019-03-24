@@ -75,7 +75,7 @@ def collectSensorData():
 			loudnessFilter.addData(grovepi.analogRead(1))    
 		if ULTRASONIC_SENSOR == "ON":
 			distanceFilter.addData(grovepi.ultrasonicRead(2))
-		if PIR_SENSOR == "ON":
+		if PIR_SENSOR == "ON" and STATE = "ON":
 			movementFilter.addData(grovepi.digitalRead(3))
 		time.sleep(0.01)
 
