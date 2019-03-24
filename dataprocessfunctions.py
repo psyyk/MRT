@@ -72,7 +72,7 @@ class MedianFilter():
 
 
 class LowPassFilter():
-  state = "normal"
+  state = "NORMAL"
   def __init__(self, constant, lowPassed, threshold):
     self.constant = constant
     self.lowPassed = lowPassed

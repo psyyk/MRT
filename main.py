@@ -103,10 +103,10 @@ def validateID():
 				else:
 					myshop.addActiveEmployee(ID)
 					print (ID + " log in")
-		elif ID != -1:
+		elif ID != "None":
 			print("Invalid ID: " + ID)
 			# lock.release()
-		ID = -1		
+		ID = "None"		
 		time.sleep(1)
 	return	
 
