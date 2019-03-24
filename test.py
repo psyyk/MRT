@@ -26,7 +26,7 @@ while True:
     time.sleep(0.01)
     #print(median)
     
-    if abs(highPassed-median) > 30:
+    if abs(highPassed-median) > 35:
         outputBuffer.append(1)
         if sum(outputBuffer) >= 3:
             warn_flag = 1 
