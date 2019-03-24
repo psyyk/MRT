@@ -3,7 +3,7 @@ from dataprocessfunctions import *
 from importantclasses import *
 import collections
 # import grovenfcreader
-#import grovepi
+import grovepi
 import time
 import thread
 
