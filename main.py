@@ -49,6 +49,7 @@ def checkState():
 		global loudnessFilter, distanceFilter, movementFilter
 		if loudnessFilter.state == "NORMAL" and distanceFilter.state == "NORMAL" and movementFilter.state == "NORMAL":
 			warning_message = "NORMAL"
+			continue
 		elif loudnessFilter.state == "WARNING" and distanceFilter.state == "WARNING" and movementFilter.state == "NORMAL":
 			warning_message = "Loudness sensor and Ultrasonic sensor warning!"	
 		elif loudnessFilter.state == "WARNING" and distanceFilter.state == "NORMAL" and movementFilter.state == "WARNING":
@@ -63,6 +64,7 @@ def checkState():
 			warning_message = "PIR sensor warning!"
 		elif loudnessFilter.state == "WARNING" :
 			warning_message = "Loudness sensor warning!"
+		state = "ALERT"
 		time.sleep(1)
 	return
 
