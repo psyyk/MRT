@@ -62,6 +62,7 @@ def checkState():
 			warning_message = "Ultrasonic sensor warning!"
 		elif movementFilter.state == "WARNING" :
 			warning_message = "PIR sensor warning!"
+			print("456")
 		elif loudnessFilter.state == "WARNING" :
 			warning_message = "Loudness sensor warning!"
 		state = "ALERT"
@@ -74,6 +75,7 @@ def collectSensorData():
 	if ULTRASONIC_SENSOR == "ON":
 		distanceFilter.addData(grovepi.ultrasonicRead(2))
 	if PIR_SENSOR == "ON":
+		print("123")
 		movementFilter.addData(grovepi.digitalRead(3))
 	time.sleep(0.01)
 
