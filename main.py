@@ -50,7 +50,6 @@ def checkState():
 		global loudnessFilter, distanceFilter, movementFilter
 		if loudnessFilter.state == "NORMAL" and distanceFilter.state == "NORMAL" and movementFilter.state == "NORMAL":
 			warning_message = "NORMAL"
-			
 			continue
 		elif loudnessFilter.state == "WARNING" and distanceFilter.state == "WARNING" and movementFilter.state == "NORMAL":
 			warning_message = "Loudness sensor and Ultrasonic sensor warning!"	
@@ -64,11 +63,14 @@ def checkState():
 			warning_message = "Ultrasonic sensor warning!"
 		elif movementFilter.state == "WARNING" :
 			warning_message = "PIR sensor warning!"
-			
-
 		elif loudnessFilter.state == "WARNING" :
 			warning_message = "Loudness sensor warning!"
-		state = "ALERT"
+		
+		if STATE != "ALERT":
+			with open('timeline.csv', 'a') as f:
+					f.write(time.strftime("%d-%m-%Y %H:%M:%S",time.localtime()) +", " + warning_message + "\n")
+		STATE = "ALERT"
+
 	return
 
 def collectSensorData():
@@ -152,7 +154,7 @@ while True:
 
 			print("Alarm on")
 	elif STATE == "ALERT":
-		print("Alerting!!! Scan valid ID card to turn off!")
+		print(warning_message + " Scan valid ID card to turn off!")
 	
 	time.sleep(1.5)
 
