@@ -111,7 +111,7 @@ def validateID():
 					print (ID + " log out")
 					
 					with open('timeline.csv', 'a') as f:
-    					f.write(time.strftime("%d-%m-%Y %H:%M:%S",time.localtime()) +", "+ myshop.findNameById(ID) + ", " + "0")
+						f.write(time.strftime("%d-%m-%Y %H:%M:%S",time.localtime()) +", "+ myshop.findNameById(ID) + ", " + "0")
 				else:
 					myshop.addActiveEmployee(ID)
 					print (ID + " log in")
