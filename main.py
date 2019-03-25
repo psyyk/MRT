@@ -44,7 +44,7 @@ def initialiseDataProcessor():
 	return
 
 def checkState():
-	global warning_message
+	global warning_message, STATE
 	while True:
 		time.sleep(1)
 		global loudnessFilter, distanceFilter, movementFilter
