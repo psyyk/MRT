@@ -77,11 +77,11 @@ def checkState():
 
 def collectSensorData():
 	while True:
-		if LOUDNESS_SENSOR == "ON" and STATE == "ON":
+		if LOUDNESS_SENSOR == "ON" and STATE != "OFF":
 			loudnessFilter.addData(grovepi.analogRead(1))    
-		if ULTRASONIC_SENSOR == "ON" and STATE == "ON":
+		if ULTRASONIC_SENSOR == "ON" and STATE != "OFF":
 			distanceFilter.addData(grovepi.ultrasonicRead(2))
-		if PIR_SENSOR == "ON" and STATE == "ON":
+		if PIR_SENSOR == "ON" and STATE != "OFF":
 			movementFilter.addData(grovepi.digitalRead(3))
 			
 		time.sleep(0.01)
