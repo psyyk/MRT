@@ -35,6 +35,11 @@ class Shop(object):
 				return True
 			
 		return False
+	def findNameById(self, ID):
+		for temp in self.active_staff:
+			if temp.ID == ID:
+				return temp.name
+		return False
 
 
 class Employee(object):
