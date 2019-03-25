@@ -118,15 +118,17 @@ class HighPassFilter(object):
 class LoudnessFilter(object):
   state = "NORMAL"
   num = 0
-  def __init__(self, constant, highPassed, threshold, delay, buffer_size1, buffer_size2):
+  def __init__(self, constant, highPassed, threshold, delay, ob_size, ob_th, wb_size, wb_th):
     self.constant = constant
     self.highPassed = highPassed
     self.threshold = threshold
     self.delay = delay    
     self.medianFilter = MedianFilter(self.delay)
     self.highPassFilter = HighPassFilter(self.constant, self.highPassed, self.threshold)
-    self.ob_size = buffer_size1
-    self.wb_size = buffer_size2
+    self.ob_size = ob_size
+    self.ob_th = ob_th
+    self.wb_size = wb_size
+    self.wb_th = wb_th
     self.outputBuffer = collections.deque(maxlen = self.ob_size)
     self.warningBuffer = collections.deque(maxlen = self.wb_size)
     for i in xrange(0, self.ob_size-1):
@@ -142,7 +144,7 @@ class LoudnessFilter(object):
     self.diff = abs(self.highPassed - self.medianOfHighPassed)
     if self.diff > self.threshold:
       self.outputBuffer.append(1)
-      if sum(self.outputBuffer) > (self.ob_size*0.6):
+      if sum(self.outputBuffer) >= self.ob_th:
         warn_flag = 1
       else:
         warn_flag = 0
@@ -150,7 +152,7 @@ class LoudnessFilter(object):
       self.outputBuffer.append(0)
       warn_flag = 0
     self.warningBuffer.append(warn_flag)
-    if sum(self.warningBuffer) >= (self.wb_size*0.6) and self.num > 10:
+    if sum(self.warningBuffer) >= self.wb_th and self.num > 10:
       self.state = "WARNING"
 
   def reset(self):
