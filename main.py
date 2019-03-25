@@ -9,7 +9,7 @@ import thread
 
 # Global variables
 STATE = "ON"   # alarem state
-LOUDNESS_SENSOR = "OFF"
+LOUDNESS_SENSOR = "ON"
 ULTRASONIC_SENSOR = "ON"
 PIR_SENSOR = "ON" 
 
