@@ -102,7 +102,7 @@ def validateID():
 				myshop.addActiveEmployee(ID)
 				print (ID + " log in")
 				with open('timeline.csv', 'a') as f:
-    				f.write(time.strftime("%d-%m-%Y %H:%M:%S",time.localtime()) +", "+ myshop.findNameById(ID) + ", " + "1")
+					f.write(time.strftime("%d-%m-%Y %H:%M:%S",time.localtime()) +", "+ myshop.findNameById(ID) + ", " + "1")
 				STATE = "OFF"                        # turn off the alarm
 				print("Alarm off")
 			elif STATE == "OFF":
