@@ -51,8 +51,6 @@ def checkState():
 		last_warning = warning_message
 		if loudnessFilter.state == "NORMAL" and distanceFilter.state == "NORMAL" and movementFilter.state == "NORMAL":
 			warning_message = "NORMAL"
-			if warning_message == "NORMAL":
-				continue
 		elif loudnessFilter.state == "WARNING" and distanceFilter.state == "WARNING" and movementFilter.state == "NORMAL":
 			warning_message = "Loudness sensor and Ultrasonic sensor warning!"	
 		elif loudnessFilter.state == "WARNING" and distanceFilter.state == "NORMAL" and movementFilter.state == "WARNING":
@@ -71,7 +69,9 @@ def checkState():
 		if last_warning != warning_message:
 			with open('warning_history.csv', 'a') as f:
 					f.write(time.strftime("%d-%m-%Y %H:%M:%S",time.localtime()) +", " + warning_message + "\n")
-		STATE = "ALERT"
+		if warning_message != "NORMAL":
+			STATE = "ALERT"
+		
 
 	return
 
