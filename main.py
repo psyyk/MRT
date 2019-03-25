@@ -115,6 +115,8 @@ def validateID():
 				else:
 					myshop.addActiveEmployee(ID)
 					print (ID + " log in")
+					with open('timeline.csv', 'a') as f:
+						f.write(time.strftime("%d-%m-%Y %H:%M:%S",time.localtime()) +", "+ myshop.findNameById(ID) + ", " + "1\n")
 		elif ID != "None":
 			print("Invalid ID: " + ID)
 			# lock.release()
@@ -143,7 +145,7 @@ while True:
 			loudnessFilter.reset()
 			movementFilter.reset()
 			distanceFilter.reset()
-			for x in range(5,0,-1):
+			for x in range(20,0,-1):
 				print("Alarm activate in " + str(x) + "second")
 				time.sleep(1)
 			STATE = "ON"
