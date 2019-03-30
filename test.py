@@ -8,6 +8,7 @@ outputBuffer = collections.deque(maxlen = 4)
 warnBuffer = collections. deque(maxlen = 6)
 lastValue = 0
 highPassed = 0
+historyBuffer.append(highPassed)
 count = 0  
 warn_flag = 0
 print("Time", "Value", "High Passed", "Median", "Diff", "Output", "Pir", "Ultro")
@@ -17,16 +18,14 @@ while True:
     value = grovepi.analogRead(1)
     highPassed = 0.5*(highPassed + value - lastValue)
     
-    historyBuffer.append(highPassed)
-    
     orderedHistory = sorted(historyBuffer)
     median = orderedHistory[int(len(orderedHistory)/2)] 
     lastValue = value
-      
-    time.sleep(0.1)
+    historyBuffer.append(highPassed)  
+    time.sleep(0.01)
     #print(median)
     
-    if abs(highPassed-median) > 34:
+    if abs(highPassed-median) > 30:
         outputBuffer.append(1)
         if sum(outputBuffer) >= 3:
             warn_flag = 1 
