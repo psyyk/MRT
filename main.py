@@ -44,7 +44,7 @@ def initialiseDataProcessor():
 	return
 
 def checkState():
-	global warning_message, STATE
+	global warning_message, STATE,loudnessFilter,distanceFilter,movementFilter
 	while True:
 		time.sleep(1)
 		global loudnessFilter, distanceFilter, movementFilter
@@ -54,7 +54,7 @@ def checkState():
 		elif loudnessFilter.state == "WARNING" and distanceFilter.state == "WARNING" and movementFilter.state == "NORMAL":
 			warning_message = "Loudness sensor and Ultrasonic sensor warning!"	
 		elif loudnessFilter.state == "WARNING" and distanceFilter.state == "NORMAL" and movementFilter.state == "WARNING":
-			warning_message = "Loudness sensor and PIR sensor warning!"	
+                        warning_message = "Loudness sensor and PIR sensor warning!"	
 		elif loudnessFilter.state == "NORMAL" and distanceFilter.state == "WARNING" and movementFilter.state == "WARNING":
 			warning_message = "Ultrasonic sensor and PIR sensor warning!"	
 		elif loudnessFilter.state == "WARNING" and distanceFilter.state == "WARNING" and movementFilter.state == "WARNING":
@@ -148,6 +148,7 @@ while True:
 	# check current state
 	if STATE == "ON":	
 		print(warning_message)
+		
 	elif STATE == "OFF":
 		if myshop.getNumberOfStaffInShop() == 0:
 			loudnessFilter.reset()
@@ -161,7 +162,6 @@ while True:
 			print("Alarm on")
 	elif STATE == "ALERT":
 		print(warning_message + " Scan valid ID card to turn off!")
-	
 	time.sleep(1.5)
 
 # 不同state打印不同输出

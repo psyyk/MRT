@@ -23,7 +23,7 @@ while True:
     median = orderedHistory[int(len(orderedHistory)/2)] 
     lastValue = value
       
-    time.sleep(0.01)
+    time.sleep(0.1)
     #print(median)
     
     if abs(highPassed-median) > 34:
