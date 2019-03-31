@@ -89,7 +89,7 @@ def collectSensorData():
 def activeNFCReader():
 	global ID, lock
 	while True:
-		tempID = raw_input()
+		tempID = input()
 		# tempID = grovenfcreader.waitForTag(3)    # may need change
 		if tempID != "None":    # empty input, skip current loop     无输入时这个值是多少？？
 			# if lock.acquire():
