@@ -31,16 +31,16 @@ while True:
             warn_flag = 1 
         else:   
             warn_flag = 0
-        #count+=1
+        
 	
     else:
         outputBuffer.append(0)
         warn_flag = 0	
     warnBuffer.append(warn_flag)
-    print("%s, %4.4f, %4.4f, %4.4f, %4.4f, %d, %d, %d"%(time.strftime("%Y-%m-%d %H:%M:%S",time.localtime()),value,highPassed,median,highPassed-median, warn_flag, pir, ultra))    
+    print("%s, %4.4f, %4.4f, %4.4f, %4.4f, %d, %d, %d, %d"%(time.strftime("%Y-%m-%d %H:%M:%S",time.localtime()),value,highPassed,median,highPassed-median, warn_flag, pir, ultra, count))    
     
 
     if sum(warnBuffer) >=4:
         print("warning! " + str(highPassed-median)+" PIR: "+str(pir)+" Ultra: "+str(ultra))
-    
+    	count += 1
     
