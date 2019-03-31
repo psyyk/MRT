@@ -1,5 +1,5 @@
 import itchat
 
-itchat.login(enableCmdQR = True)
+itchat.login(enableCmdQR = 2)
 
 itchat.send(u'hello', 'filehelper')
