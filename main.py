@@ -6,12 +6,14 @@ import collections
 import grovepi
 import time
 import _thread as thread
+import itchat
 
 # Global variables
 STATE = "ON"   # alarem state
 LOUDNESS_SENSOR = "ON"
 ULTRASONIC_SENSOR = "ON"
 PIR_SENSOR = "ON" 
+WECHAT_MESSAGE = "ON"
 
 ID = "None"
 lock = thread.allocate()
@@ -134,7 +136,8 @@ def validateID():
 
 initialiseHumanResource()
 initialiseDataProcessor()
-
+if WECHAT_MESSAGE == "ON":
+	itchat.login(enableCmdQR = 2)
 try:
 	thread.start_new_thread(activeNFCReader,())
 	thread.start_new_thread(validateID,())
@@ -162,6 +165,8 @@ while True:
 			print("Alarm on")
 	elif STATE == "ALERT":
 		print(warning_message + " Scan valid ID card to turn off!")
+		if WECHAT_MESSAGE == "ON":
+			itchat.send(warning_message, toUserName='filehelper')
 	time.sleep(1.5)
 
 # 不同state打印不同输出
