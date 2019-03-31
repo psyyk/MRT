@@ -42,5 +42,5 @@ while True:
 
     if sum(warnBuffer) >=4:
         print("warning! " + str(highPassed-median)+" PIR: "+str(pir)+" Ultra: "+str(ultra))
-    	count += 1
+        count += 1
     

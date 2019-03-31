@@ -5,7 +5,7 @@ import collections
 # import grovenfcreader
 import grovepi
 import time
-import thread
+import _thread as thread
 
 # Global variables
 STATE = "ON"   # alarem state
@@ -140,8 +140,8 @@ try:
 	thread.start_new_thread(validateID,())
 	thread.start_new_thread(checkState,())
 	thread.start_new_thread(collectSensorData,())
-except:
-	print("something wrong")
+except Exception as e: 
+	print(e)
 
 
 while True:
