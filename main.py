@@ -155,7 +155,7 @@ while True:
 			movementFilter.reset()
 			distanceFilter.reset()
 			for x in range(20,0,-1):
-				print("Alarm activate in " + str(x) + "second")
+				print("Alarm activate in " + str(x) + " second")
 				time.sleep(1)
 			STATE = "ON"
 
