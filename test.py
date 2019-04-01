@@ -23,7 +23,7 @@ while True:
 
     cur_buffer.append(highPassed)
     ordered_cur = sorted(cur_buffer)
-    cur_highPass = ordered_cur[int(len(orderedHistory)/2)] 
+    cur_highPass = ordered_cur[int(len(ordered_cur)/2)] 
 
     orderedHistory = sorted(historyBuffer)
     median_of_history = orderedHistory[int(len(orderedHistory)/2)] 
