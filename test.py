@@ -5,7 +5,7 @@ import collections
 
 historyBuffer = collections.deque(maxlen = 10)
 cur_buffer = collections.deque(maxlen = 3)
-outputBuffer = collections.deque(maxlen = 4)
+outputBuffer = collections.deque(maxlen = 3)
 
 lastValue = 0
 highPassed = 0
@@ -32,9 +32,9 @@ while True:
     time.sleep(0.01)
     #print(median_of_history)
     
-    if abs(cur_highPass-median_of_history) > 30:
+    if abs(cur_highPass-median_of_history) > 25:
         outputBuffer.append(1)
-        if sum(outputBuffer) >= 3:
+        if sum(outputBuffer) >= 2:
             print("warning! " + str(cur_highPass-median_of_history)+" PIR: "+str(pir)+" Ultra: "+str(ultra))
             count += 1
     else:
