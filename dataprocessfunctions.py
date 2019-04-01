@@ -119,11 +119,10 @@ class LoudnessFilter(object):
   def reset(self):
     self.highPassFilter.reset()
     self.hm.reset()
+    self.ch.reset()
     self.state = "NORMAL"
     for i in range(0, self.ob_size-1):
       self.outputBuffer[i] = 0
-    for j in range(0, self.wb_size-1):
-      self.warningBuffer[j] = 0
     self.num = 0
 
 
