@@ -13,7 +13,7 @@ historyBuffer.append(highPassed)
 cur_buffer.append(highPassed)
 count = 0  
 warn_flag = 0
-print("Time", "Value", "High Passed", "Median", "Diff", "Output", "Pir", "Ultro")
+print("Time, Value, High Passed, Median, Diff, Output, Pir, Ultro, Count")
 while True:
     pir = grovepi.digitalRead(3)
     ultra = grovepi.ultrasonicRead(2)
