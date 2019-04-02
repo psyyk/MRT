@@ -39,7 +39,7 @@ def initialiseHumanResource():
 
 def initialiseDataProcessor():
 	global loudnessFilter, distanceFilter, movementFilter
-	loudnessFilter = LoudnessFilter(0.5,0,20,15,5,10,6)
+	loudnessFilter = LoudnessFilter(0.5,0,25,15,5,8,5)
 	distanceFilter = LowPassFilter(0.1, 500, 80)
 	movementFilter = MedianFilter(20)
 

@@ -12,7 +12,7 @@ highPassed = 0
 historyBuffer.append(highPassed)
 cur_buffer.append(highPassed)
 count = 0  
-warn_flag = 0
+
 print("Time, Value, High Passed, Median, Diff, Output, Pir, Ultro, Count")
 while True:
     pir = grovepi.digitalRead(3)
@@ -40,7 +40,7 @@ while True:
     else:
         outputBuffer.append(0)
 
-    print("%s, %4.4f, %4.4f, %4.4f, %4.4f, %d, %d, %d, %d"%(time.strftime("%Y-%m-%d %H:%M:%S",time.localtime()),value,cur_highPass,median_of_history,cur_highPass-median_of_history, warn_flag, pir, ultra, count))    
+    print("%s, %4.4f, %4.4f, %4.4f, %4.4f, %d, %d, %d"%(time.strftime("%Y-%m-%d %H:%M:%S",time.localtime()),value,cur_highPass,median_of_history,cur_highPass-median_of_history, pir, ultra, count))    
     
 
     
