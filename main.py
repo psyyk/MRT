@@ -11,7 +11,7 @@ import itchat
 # Global variables
 STATE = "ON"   # alarem state
 LOUDNESS_SENSOR = "ON"
-ULTRASONIC_SENSOR = "ON"
+ULTRASONIC_SENSOR = "OFF"
 PIR_SENSOR = "ON" 
 WECHAT_MESSAGE = "ON"
 
@@ -39,9 +39,9 @@ def initialiseHumanResource():
 
 def initialiseDataProcessor():
 	global loudnessFilter, distanceFilter, movementFilter
-	loudnessFilter = LoudnessFilter(0.5,0,30,10,3,10,5)
+	loudnessFilter = LoudnessFilter(0.5,0,20,15,5,10,6)
 	distanceFilter = LowPassFilter(0.1, 500, 80)
-	movementFilter = MedianFilter(5)
+	movementFilter = MedianFilter(20)
 
 	return
 
@@ -157,7 +157,7 @@ while True:
 			loudnessFilter.reset()
 			movementFilter.reset()
 			distanceFilter.reset()
-			for x in range(20,0,-1):
+			for x in range(10,0,-1):
 				print("Alarm activate in " + str(x) + " second")
 				time.sleep(1)
 			STATE = "ON"

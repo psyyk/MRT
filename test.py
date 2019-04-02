@@ -3,9 +3,9 @@ import grovepi
 import time
 import collections
 
-historyBuffer = collections.deque(maxlen = 10)
-cur_buffer = collections.deque(maxlen = 3)
-outputBuffer = collections.deque(maxlen = 10)
+historyBuffer = collections.deque(maxlen = 15)
+cur_buffer = collections.deque(maxlen = 5)
+outputBuffer = collections.deque(maxlen = 8)
 
 lastValue = 0
 highPassed = 0
