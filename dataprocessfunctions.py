@@ -11,8 +11,8 @@ class MedianFilter():
   def __init__(self, delay):
     self.delay = delay
     self.historyBuffer = collections.deque(maxlen=delay)
-    for i in range(0, self.delay-1):
-      self.historyBuffer.append(0)
+    # for i in range(0, self.delay):
+    #   self.historyBuffer.append(0)
 
   def printDelay(self):
 
@@ -31,7 +31,7 @@ class MedianFilter():
   def reset(self):
     self.state = "NORMAL"
     self.median = 0
-    for i in range(0, self.delay-1):
+    for i in range(0, self.delay):
       self.historyBuffer[i] = 0
     return
 
@@ -96,7 +96,7 @@ class LoudnessFilter(object):
   
     self.outputBuffer = collections.deque(maxlen = self.ob_size)
     
-    for i in range(0, self.ob_size-1):
+    for i in range(0, self.ob_size):
       self.outputBuffer.append(0)
 
 
@@ -121,7 +121,7 @@ class LoudnessFilter(object):
     self.hm.reset()
     self.ch.reset()
     self.state = "NORMAL"
-    for i in range(0, self.ob_size-1):
+    for i in range(0, self.ob_size):
       self.outputBuffer[i] = 0
     self.num = 0
 
