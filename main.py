@@ -19,7 +19,7 @@ ID = "None"
 lock = thread.allocate()
 exit_flag = 0
 warning_message = "NORMAL"
-
+count = 0
 def initialiseHumanResource():
 
 	global staff, myshop
@@ -68,9 +68,10 @@ def checkState():
 		elif loudnessFilter.state == "WARNING" :
 			warning_message = "Loudness sensor warning!"
 		
-		if last_warning != warning_message:
+		if last_warning != warning_message and warning_message != "NORMAL":
 			with open('warning_history.csv', 'a') as f:
-					f.write(time.strftime("%d-%m-%Y %H:%M:%S",time.localtime()) +", " + warning_message + "\n")
+					f.write(time.strftime("%d-%m-%Y %H:%M:%S",time.localtime()) +", " + warning_message + "," + count + "\n")
+					count += 1
 		if warning_message != "NORMAL":
 			STATE = "ALERT"
 		
