@@ -13,7 +13,7 @@ STATE = "ON"   # alarem state
 LOUDNESS_SENSOR = "ON"
 ULTRASONIC_SENSOR = "OFF"
 PIR_SENSOR = "ON" 
-WECHAT_MESSAGE = "ON"
+WECHAT_MESSAGE = "OFF"
 
 ID = "None"
 lock = thread.allocate()
@@ -39,7 +39,7 @@ def initialiseHumanResource():
 
 def initialiseDataProcessor():
 	global loudnessFilter, distanceFilter, movementFilter
-	loudnessFilter = LoudnessFilter(0.5,0,25,15,5,8,5)
+	loudnessFilter = LoudnessFilter(0.5,0,25,15,6,8,5)
 	distanceFilter = LowPassFilter(0.1, 500, 80)
 	movementFilter = MedianFilter(20)
 
@@ -166,8 +166,8 @@ while True:
 	elif STATE == "ALERT":
 		print(warning_message + " Scan valid ID card to turn off!")
 
-		if WECHAT_MESSAGE == "ON":
-			itchat.send(warning_message, toUserName='filehelper')
+		if True:
+			#itchat.send(warning_message, toUserName='filehelper')
 			loudnessFilter.reset()
 			movementFilter.reset()
 			distanceFilter.reset()
