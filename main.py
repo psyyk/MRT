@@ -46,7 +46,7 @@ def initialiseDataProcessor():
 	return
 
 def checkState():
-	global warning_message, STATE,loudnessFilter,distanceFilter,movementFilter
+	global warning_message, STATE,loudnessFilter,distanceFilter,movementFilter,count
 	while True:
 		time.sleep(1)
 		global loudnessFilter, distanceFilter, movementFilter
@@ -70,7 +70,7 @@ def checkState():
 		
 		if last_warning != warning_message and warning_message != "NORMAL":
 			with open('warning_history.csv', 'a') as f:
-					f.write(time.strftime("%d-%m-%Y %H:%M:%S",time.localtime()) +", " + warning_message + "," + count + "\n")
+					f.write(time.strftime("%d-%m-%Y %H:%M:%S",time.localtime()) +", " + warning_message + "," + str(count) + "\n")
 					count += 1
 		if warning_message != "NORMAL":
 			STATE = "ALERT"
