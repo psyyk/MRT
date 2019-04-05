@@ -39,7 +39,7 @@ def initialiseHumanResource():
 
 def initialiseDataProcessor():
 	global loudnessFilter, distanceFilter, movementFilter
-	loudnessFilter = LoudnessFilter(0.5,0,25,15,6,8,5)
+	loudnessFilter = LoudnessFilter(0.5,0,30,15,6,8,5)
 	distanceFilter = LowPassFilter(0.1, 500, 80)
 	movementFilter = MedianFilter(20)
 
@@ -70,7 +70,7 @@ def checkState():
 		
 		if last_warning != warning_message and warning_message != "NORMAL":
 			with open('warning_history.csv', 'a') as f:
-					f.write(time.strftime("%d-%m-%Y %H:%M:%S",time.localtime()) +", " + warning_message + "," + str(count) + "\n")
+					f.write(time.strftime("%d-%m-%Y %H:%M:%S",time.localtime()) +", "+str(time.time())+"," + warning_message + "," + str(count) + "\n")
 					count += 1
 		if warning_message != "NORMAL":
 			STATE = "ALERT"
