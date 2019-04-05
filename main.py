@@ -56,7 +56,7 @@ def checkState():
 		elif loudnessFilter.state == "WARNING" and distanceFilter.state == "WARNING" and movementFilter.state == "NORMAL":
 			warning_message = "Loudness sensor and Ultrasonic sensor warning!"	
 		elif loudnessFilter.state == "WARNING" and distanceFilter.state == "NORMAL" and movementFilter.state == "WARNING":
-            warning_message = "Loudness sensor and PIR sensor warning!"	
+			warning_message = "Loudness sensor and PIR sensor warning!"	
 		elif loudnessFilter.state == "NORMAL" and distanceFilter.state == "WARNING" and movementFilter.state == "WARNING":
 			warning_message = "Ultrasonic sensor and PIR sensor warning!"	
 		elif loudnessFilter.state == "WARNING" and distanceFilter.state == "WARNING" and movementFilter.state == "WARNING":
