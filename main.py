@@ -94,7 +94,7 @@ def activeNFCReader():
 	while True:
 		tempID = input()
 		# tempID = grovenfcreader.waitForTag(3)    # may need change
-		if tempID != "None":    # empty input, skip current loop     无输入时这个值是多少？？
+		if tempID != "None":    # empty input, skip current loop     
 			# if lock.acquire():
 			ID = tempID
 				# lock.release()
@@ -149,10 +149,9 @@ except Exception as e:
 
 
 while True:
-	# check current state
+	# check alarm state
 	if STATE == "ON":	
 		print(warning_message)
-		
 	elif STATE == "OFF":
 		if myshop.getNumberOfStaffInShop() == 0:
 			loudnessFilter.reset()
@@ -162,7 +161,6 @@ while True:
 				print("Alarm activate in " + str(x) + " second")
 				time.sleep(1)
 			STATE = "ON"
-
 			print("Alarm on")
 	elif STATE == "ALERT":
 		print(warning_message + " Scan valid ID card to turn off!")
@@ -175,12 +173,3 @@ while True:
 			STATE = "OFF"
 
 	time.sleep(1.5)
-
-# 不同state打印不同输出
-# checkState()
-
-
-
-
-
-
