@@ -22,7 +22,7 @@ distanceFilter4 = LowPassFilter(0.7, 500, 80)
 state1 = state2 = state3 = state4 = 0
 
 # print("Time, Value, High Passed, Median, Diff, Output, Pir, Ultro, Count")
-print("D1", "D2", "D3", "D4")
+print("D1"+","+ "D2"+","+ "D3"+","+ "D4")
 while True:
     pir = grovepi.digitalRead(3)
     ultra = grovepi.ultrasonicRead(2)
