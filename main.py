@@ -93,11 +93,9 @@ def activeNFCReader():
 	global ID, lock
 	while True:
 		tempID = input()
-		# tempID = grovenfcreader.waitForTag(3)    # may need change
+		# tempID = grovenfcreader.waitForTag(3)    # using NFC tag
 		if tempID != "None":    # empty input, skip current loop     
-			# if lock.acquire():
 			ID = tempID
-				# lock.release()
 	return
 	
 def validateID():
