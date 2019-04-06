@@ -19,6 +19,8 @@ distanceFilter2 = LowPassFilter(0.3, 500, 80)
 distanceFilter3 = LowPassFilter(0.5, 500, 80)
 distanceFilter4 = LowPassFilter(0.7, 500, 80)
 
+state1 = state2 = state3 = state4 = 0
+
 # print("Time, Value, High Passed, Median, Diff, Output, Pir, Ultro, Count")
 print("D1", "D2", "D3", "D4")
 while True:
@@ -41,8 +43,28 @@ while True:
     distanceFilter2.addData(ultra)
     distanceFilter3.addData(ultra)
     distanceFilter4.addData(ultra)
-    print(str(distanceFilter1.lowPassed)+", "+str(distanceFilter2.lowPassed)+", "+str(distanceFilter3.lowPassed)+", "+str(distanceFilter4.lowPassed))
 
+    if distanceFilter1.state == "NORMAL":
+        state1 = 0
+    else: 
+        state1 = 1
+
+    if distanceFilter2.state == "NORMAL":
+        state2 = 0
+    else: 
+        state2 = 1
+
+    if distanceFilter3.state == "NORMAL":
+        state3 = 0
+    else: 
+        state3 = 1
+
+    if distanceFilter4.state == "NORMAL":
+        state4 = 0
+    else: 
+        state4 = 1
+    # print(str(distanceFilter1.lowPassed)+", "+str(distanceFilter2.lowPassed)+", "+str(distanceFilter3.lowPassed)+", "+str(distanceFilter4.lowPassed))
+    print(str(state1)+", "+str(state2)+", "+str(state3)+", "+str(state4))
     time.sleep(0.01)
     #print(median_of_history)
     '''
