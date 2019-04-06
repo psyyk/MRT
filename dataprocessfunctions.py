@@ -47,8 +47,7 @@ class LowPassFilter():
     self.lowPassed = self.lowPassed * (1.0 - self.constant) + value * self.constant
     if self.lowPassed < self.threshold:
       self.state = "WARNING"
-    else:
-      self.state = "NORMAL"
+    
 
 
     return self.lowPassed
