@@ -106,7 +106,7 @@ def validateID():
 			if STATE == "ALERT" or STATE == "ON":
 				myshop.addActiveEmployee(ID)
 				print (ID + " log in")
-				with open('timeline.csv', 'a') as f:
+				with open('attendence.csv', 'a') as f:
 					f.write(time.strftime("%d-%m-%Y %H:%M:%S",time.localtime()) +", "+ myshop.findNameById(ID) + ", " + "1\n")
 				
 				loudnessFilter.reset()
@@ -119,12 +119,12 @@ def validateID():
 					myshop.removeActiveEmployeeByID(ID)
 					print (ID + " log out")
 					
-					with open('timeline.csv', 'a') as f:
+					with open('attendence.csv', 'a') as f:
 						f.write(time.strftime("%d-%m-%Y %H:%M:%S",time.localtime()) +", "+ myshop.findNameById(ID) + ", " + "0\n")
 				else:
 					myshop.addActiveEmployee(ID)
 					print (ID + " log in")
-					with open('timeline.csv', 'a') as f:
+					with open('attendence.csv', 'a') as f:
 						f.write(time.strftime("%d-%m-%Y %H:%M:%S",time.localtime()) +", "+ myshop.findNameById(ID) + ", " + "1\n")
 		elif ID != "None":
 			print("Invalid ID: " + ID)
