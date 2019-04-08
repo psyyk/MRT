@@ -47,7 +47,7 @@ class LowPassFilter():
     self.lowPassed = self.lowPassed * (1.0 - self.constant) + value * self.constant
     if self.lowPassed < self.threshold:
       self.state = "WARNING"
-    
+
 
 
     return self.lowPassed
@@ -90,14 +90,14 @@ class LoudnessFilter(object):
     self.medianOfHighPassed = highPassed
     self.threshold = threshold
     self.hm_delay = hm_delay    
-    self.hm = MedianFilter(self.hm_delay)
-    self.ch_delay = ch_delay    # current highpass median filter
-    self.ch = MedianFilter(self.ch_delay)
+    self.hm = MedianFilter(self.hm_delay) # history high pass median filter
+    self.ch_delay = ch_delay    
+    self.ch = MedianFilter(self.ch_delay) # current highpass median filter
     self.highPassFilter = HighPassFilter(self.constant, self.highPassed, self.threshold)
     self.ob_size = ob_size
     self.ob_th = ob_th
   
-    self.outputBuffer = collections.deque(maxlen = self.ob_size)
+    self.outputBuffer = collections.deque(maxlen = self.ob_size) # mean filter
     
     for i in range(0, self.ob_size):
       self.outputBuffer.append(0)
