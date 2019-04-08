@@ -70,7 +70,7 @@ def checkState():
 		
 		if last_warning != warning_message and warning_message != "NORMAL":
 			with open('warning_history.csv', 'a') as f:
-				f.write(time.strftime("%d-%m-%Y %H:%M:%S",time.localtime()) +", "+str(time.time())+"," + warning_message + "," + " 1" + str(loudnessFilter.cur_highPass) +"\n")
+				f.write(time.strftime("%d-%m-%Y %H:%M:%S",time.localtime()) +", "+str(time.time())+"," + warning_message + "," + " 1, " + str(loudnessFilter.cur_highPass) +"\n")
 				count += 1
 		if warning_message != "NORMAL":
 			STATE = "ALERT"
