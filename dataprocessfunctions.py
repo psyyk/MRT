@@ -106,7 +106,7 @@ class LoudnessFilter(object):
     self.highPassed = self.highPassFilter.addData(value)
     self.cur_highPass = self.chm.addData(self.highPassed)
     self.diff = abs(self.cur_highPass - self.medianOfHighPassed)
-    self.medianOfHighPassed = self.hm.addData(self.highPassed)
+    self.medianOfHighPassed = self.hhm.addData(self.highPassed)
     
     if self.diff > self.threshold:
       self.outputBuffer.append(1)
