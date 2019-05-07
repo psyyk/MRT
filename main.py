@@ -11,7 +11,7 @@ import _thread as thread
 # Global variables
 STATE = "ON"   # alarem state
 LOUDNESS_SENSOR = "ON"
-ULTRASONIC_SENSOR = "OFF"
+ULTRASONIC_SENSOR = "ON"
 PIR_SENSOR = "ON" 
 NFC = "OFF"
 WECHAT_MESSAGE = "OFF"
