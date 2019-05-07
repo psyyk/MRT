@@ -11,8 +11,6 @@ class MedianFilter():
   def __init__(self, delay):
     self.delay = delay
     self.historyBuffer = collections.deque(maxlen=delay)
-    # for i in range(0, self.delay):
-    #   self.historyBuffer.append(0)
 
   def printDelay(self):
 
@@ -84,19 +82,18 @@ class HighPassFilter(object):
 class LoudnessFilter(object):
   state = "NORMAL"
   num = 0
-  def __init__(self, constant, highPassed, threshold, hm_delay, ch_delay, ob_size, ob_th):
+  def __init__(self, constant, highPassed, threshold, hhm_delay, chm_delay, ob_size, ob_th):
     self.constant = constant
     self.highPassed = highPassed
     self.medianOfHighPassed = highPassed
-    self.threshold = threshold
-    self.hm_delay = hm_delay    
-    self.hm = MedianFilter(self.hm_delay) # history high pass median filter
-    self.ch_delay = ch_delay    
-    self.ch = MedianFilter(self.ch_delay) # current highpass median filter
+    self.threshold = threshold              # threshold for high pass filter
+    self.hhm_delay = hhm_delay              # delay of median filter for history high pass
+    self.hhm = MedianFilter(self.hhm_delay) # history high pass median filter
+    self.chm_delay = chm_delay              # delay of median filter for current high pass
+    self.chm = MedianFilter(self.chm_delay) # current high pass median filter
     self.highPassFilter = HighPassFilter(self.constant, self.highPassed, self.threshold)
-    self.ob_size = ob_size
-    self.ob_th = ob_th
-  
+    self.ob_size = ob_size                  # output buffer size   
+    self.ob_th = ob_th                      # output buffer threshold
     self.outputBuffer = collections.deque(maxlen = self.ob_size) # mean filter
     
     for i in range(0, self.ob_size):
@@ -107,7 +104,7 @@ class LoudnessFilter(object):
     if self.num < 60:
       self.num += 1
     self.highPassed = self.highPassFilter.addData(value)
-    self.cur_highPass = self.ch.addData(self.highPassed)
+    self.cur_highPass = self.chm.addData(self.highPassed)
     self.diff = abs(self.cur_highPass - self.medianOfHighPassed)
     self.medianOfHighPassed = self.hm.addData(self.highPassed)
     
@@ -121,8 +118,8 @@ class LoudnessFilter(object):
 
   def reset(self):
     self.highPassFilter.reset()
-    self.hm.reset()
-    self.ch.reset()
+    self.hhm.reset()
+    self.chm.reset()
     self.state = "NORMAL"
     for i in range(0, self.ob_size):
       self.outputBuffer[i] = 0
