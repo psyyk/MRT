@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
-# import grovepi
 import time
 import collections # for deque class
-
-
 
 class MedianFilter():
   state = "NORMAL"
@@ -33,7 +30,6 @@ class MedianFilter():
       self.historyBuffer[i] = 0
     return
 
-
 class LowPassFilter():
   state = "NORMAL"
   def __init__(self, constant, lowPassed, threshold):
@@ -45,16 +41,12 @@ class LowPassFilter():
     self.lowPassed = self.lowPassed * (1.0 - self.constant) + value * self.constant
     if self.lowPassed < self.threshold:
       self.state = "WARNING"
-
-
-
     return self.lowPassed
 
   def reset(self):
     self.state = "NORMAL"
     self.lowPassed = self.threshold + 100
     return
-
 
 class HighPassFilter(object):
   state = "NORMAL"
@@ -70,14 +62,11 @@ class HighPassFilter(object):
 
     if self.highPassed > self.threshold:
       self.state = "WARNING"
-
     return self.highPassed
 
   def reset(self):
     self.state = "NORMAL"
     self.lastValue = 0
-
-    
 
 class LoudnessFilter(object):
   state = "NORMAL"
@@ -124,11 +113,3 @@ class LoudnessFilter(object):
     for i in range(0, self.ob_size):
       self.outputBuffer[i] = 0
     self.num = 0
-
-
-
-
-
-
-
-

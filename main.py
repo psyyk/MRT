@@ -7,9 +7,10 @@ import grovepi
 import time
 import _thread as thread
 # import itchat
+# Reference of itchat: GitHub. (n.d.). littlecodersh/ItChat. [online] Available at: https://github.com/littlecodersh/ItChat [Accessed 7 Apr. 2019].
 
 # Global variables
-STATE = "ON"   # alarem state
+STATE = "ON"   # alarm state
 LOUDNESS_SENSOR = "ON"
 ULTRASONIC_SENSOR = "ON"
 PIR_SENSOR = "ON" 
